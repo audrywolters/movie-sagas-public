@@ -18,10 +18,10 @@ function* rootSaga() {
 //Saga to get plants from server
 function* getMovies(){
     try {
-      const response = yield axios.get('/api/plant');
+      const response = yield axios.get('/movies');
       yield put({type: 'SET_MOVIES', payload: response.data })
     } catch (error){
-      console.log('error with garden get request...', error);
+      console.log('error with MOVIES get request...', error);
     }
   }
 
@@ -40,20 +40,20 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres
+        // genres
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
