@@ -9,6 +9,8 @@ class Details extends Component {
   }
 
   componentDidMount() {  
+    // we don't have much data - the movie ID only
+    // so we have to find it...
     this.setMovie();  
     this.setGenres();
   }
@@ -18,14 +20,15 @@ class Details extends Component {
     // this is the ID of the poster we just clicked on
     let thisMovieID = this.props.match.params.id;
 
-    // make a nice variable to store our movie when we find it
+    // make a nice variable to store our movie 
+    // when we find it
     let coolMovie = [];
 
-    // now for the other shiv
-    for ( const movie of this.props.reduxState.movies ) {   
-      if ( Number( movie.id ) === Number( thisMovieID ) ) {
+    // loop for matching IDs
+    for ( const reduxMovie of this.props.reduxState.movies ) {   
+      if ( Number( reduxMovie.id ) === Number( thisMovieID ) ) {
         // that's it! grab it
-        coolMovie = movie;
+        coolMovie = reduxMovie;
       }
     }
 
@@ -42,21 +45,20 @@ class Details extends Component {
 
     // keep all the data in a nice variable
     // (data is a giant array of all the movies' stuff)
-    let details = this.props.reduxState.details;
+    let reduxMovies = this.props.reduxState.details;
 
     // prepare an object to catch our specific movie
     let thisDetail = {};
-
 
     // i'm not certain about this
     // if there were 10,000 movies, this loop would take a long time
     // the alternative is to hit the server on every click - that's a lot of traffic
 
     // loop to find the matching ID
-    for ( const detail_ of details ) {   
-      if ( Number( detail_.id ) === Number( thisMovieID ) ) {
+    for ( const reduxMovie of reduxMovies ) {   
+      if ( Number( reduxMovie.id ) === Number( thisMovieID ) ) {
         // that's it! grab it
-        thisDetail = detail_;
+        thisDetail = reduxMovie;
       }
     }
 
@@ -70,6 +72,7 @@ class Details extends Component {
   render() {
     return (
       <>
+        {/* display movie info */}
         <h3>{ this.state.movie.title } </h3>
         <div>{ this.state.movie.description }</div>
 
