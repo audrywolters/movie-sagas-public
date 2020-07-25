@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../Detail/Detail';
 import '../Home/Home.css';
 
 class Home extends Component {
@@ -11,7 +10,9 @@ class Home extends Component {
   }
 
   goToDetail = ( event ) => {
+    this.props.history.push( `/detail/${event.target.name}` )
     console.log( 'detail of: ', event.target.name );
+
   }
   
   render() {
@@ -21,9 +22,13 @@ class Home extends Component {
         <ul>
           { this.props.reduxState.movies.map( ( movie ) => 
                       <li key={ movie.id }>
-                      <img src={ movie.poster } onClick={ this.goToDetail } name={ movie.id } alt={ movie.title } />
-                          <h3>{ movie.title }</h3>
-                          <span>{ movie.description }</span>
+                        <img  src={ movie.poster } 
+                              onClick={ this.goToDetail } 
+                              name={ movie.id } 
+                              alt={ movie.title } 
+                        />
+                        <h3>{ movie.title }</h3>
+                        <span>{ movie.description }</span>
                       </li>
                   )} 
         </ul>
