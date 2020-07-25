@@ -45,7 +45,7 @@ class Details extends Component {
 
     // keep all the data in a nice variable
     // (data is a giant array of all the movies' stuff)
-    let reduxMovies = this.props.reduxState.details;
+    let allReduxDetails = this.props.reduxState.details;
 
     // prepare an object to catch our specific movie
     let thisDetail = {};
@@ -55,10 +55,10 @@ class Details extends Component {
     // the alternative is to hit the server on every click - that's a lot of traffic
 
     // loop to find the matching ID
-    for ( const reduxMovie of reduxMovies ) {   
-      if ( Number( reduxMovie.id ) === Number( thisMovieID ) ) {
+    for ( const reduxDetail of allReduxDetails ) {   
+      if ( Number( reduxDetail.id ) === Number( thisMovieID ) ) {
         // that's it! grab it
-        thisDetail = reduxMovie;
+        thisDetail = reduxDetail;
       }
     }
 
