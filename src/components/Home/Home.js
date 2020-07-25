@@ -8,11 +8,16 @@ class Home extends Component {
     // get all the movie data right away
     // so it will display everything on load
     this.props.dispatch({ type: 'FETCH_MOVIES' });
+    this.props.dispatch({ type: 'FETCH_DETAILS' });
   }
 
   goToDetail = ( event ) => {
     // go to the detail page 
     // of the poster that was clicked on
+
+    // this is only client front end display stuff
+    // we want the ID so we can dig for the detials in redux
+    
     this.props.history.push( `/detail/${ event.target.name }` )
   }
   

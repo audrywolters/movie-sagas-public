@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     // retrieve movies from DB
     yield takeEvery( 'FETCH_MOVIES', getMovies );
+    yield takeEvery( 'FETCH_DETAILS', getDetails )
 }
 
 function* getMovies(){
@@ -24,18 +25,37 @@ function* getMovies(){
         // and send them off to store in redux
         yield put( { type: 'SET_MOVIES', payload: response.data } )
     } catch ( error ) {
-      console.log( 'error with MOVIES get request...', error );
+      console.log( 'error getting movies: ', error );
     }
   }
 
+  function* getDetails( action ) {
+    try {
+        // get all of the genres for each movie
+        const response = yield axios.get( '/detail' );
+        yield put({ type: 'SET_DETAILS', payload: response.data });
+    } catch (error) {
+        console.log( 'error getting detail: ', error );
+    }
+  }
 
 // create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 // here is where we keep the movies data
-const movies = (state = [], action) => {
-    switch (action.type) {
+const movies = ( state = [], action ) => {
+    switch ( action.type ) {
         case 'SET_MOVIES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+// here is where we keep the movies data
+const details = ( state = [], action ) => {
+    switch ( action.type ) {
+        case 'SET_DETAILS':
             return action.payload;
         default:
             return state;
@@ -52,11 +72,13 @@ const movies = (state = [], action) => {
 //     }
 // }
 
+
 // create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
-        // genres
+        details
+        // genres,
     }),
     // add sagaMiddleware to our store
     applyMiddleware( sagaMiddleware, logger )
@@ -65,7 +87,7 @@ const storeInstance = createStore(
 // pass rootSaga into our sagaMiddleware
 sagaMiddleware.run( rootSaga );
 
-ReactDOM.render( <Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render( <Provider store={ storeInstance }><App /></Provider>, 
     document.getElementById( 'root' ) ); 
 
 registerServiceWorker();
