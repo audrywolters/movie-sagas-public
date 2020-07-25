@@ -10,26 +10,29 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
-// Create the rootSaga generator function
+
+// create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('FETCH_MOVIES', getMovies);
+    // retrieve movies from DB
+    yield takeEvery( 'FETCH_MOVIES', getMovies );
 }
 
-//Saga to get plants from server
 function* getMovies(){
     try {
-      const response = yield axios.get('/api/plant');
-      yield put({type: 'SET_MOVIES', payload: response.data })
-    } catch (error){
-      console.log('error with garden get request...', error);
+        // get movies from DB
+        const response = yield axios.get( '/movies' );
+        // and send them off to store in redux
+        yield put( { type: 'SET_MOVIES', payload: response.data } )
+    } catch ( error ) {
+      console.log( 'error with MOVIES get request...', error );
     }
   }
 
 
-// Create sagaMiddleware
+// create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Used to store movies returned from the server
+// here is where we keep the movies data
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -40,28 +43,29 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
-// Create one store that all components can use
+// create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres
+        // genres
     }),
-    // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
+    // add sagaMiddleware to our store
+    applyMiddleware( sagaMiddleware, logger )
 );
 
-// Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+// pass rootSaga into our sagaMiddleware
+sagaMiddleware.run( rootSaga );
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
-    document.getElementById('root'));
+ReactDOM.render( <Provider store={storeInstance}><App /></Provider>, 
+    document.getElementById( 'root' ) ); 
+
 registerServiceWorker();
