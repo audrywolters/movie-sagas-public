@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
   componentDidMount() {
-    // get all the movie data right away
-    // so it will display everything on load
-    // do a one time axios request
   }
 
   render() {
@@ -16,7 +13,7 @@ class Details extends Component {
         <p>This is the details page for item with id { this.props.match.params.id }!</p>
         
       </>
-    );  
+    );
   }
   
 }
