@@ -5,14 +5,15 @@ import '../Home/Home.css';
 class Home extends Component {
 
   componentDidMount() {
-    // get all the movie data so it will display on load
+    // get all the movie data right away
+    // so it will display everything on load
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
 
   goToDetail = ( event ) => {
-    this.props.history.push( `/detail/${event.target.name}` )
-    console.log( 'detail of: ', event.target.name );
-
+    // go to the detail page 
+    // of the poster that was clicked on
+    this.props.history.push( `/detail/${ event.target.name }` )
   }
   
   render() {
@@ -20,6 +21,7 @@ class Home extends Component {
       <>
         <h2>you're in home</h2>                
         <ul>
+          {/* show all the movies in the DB */}
           { this.props.reduxState.movies.map( ( movie ) => 
                       <li key={ movie.id }>
                         <img  src={ movie.poster } 
