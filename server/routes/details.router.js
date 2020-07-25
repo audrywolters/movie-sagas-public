@@ -13,7 +13,7 @@ router.get( '/', ( req, res ) => {
         res.send( result.rows ) 
     })
     .catch( ( error ) => {
-        console.log( 'Error GET detail', error )
+        console.log( 'Error GET details', error )
         res.sendStatus( 500 );  
     });
 })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Detail extends Component {
+class Details extends Component {
 
   componentDidMount() {
     // get all the movie data right away
@@ -12,7 +12,7 @@ class Detail extends Component {
   render() {
     return (
       <>
-        <h3>you're in detail </h3>   
+        <h3>you're in details </h3>   
         <p>This is the details page for item with id { this.props.match.params.id }!</p>
         
       </>
@@ -26,4 +26,4 @@ const mapReduxStateToProps = reduxState => ({
     reduxState
 });
 
-export default connect( mapReduxStateToProps )( Detail );
+export default connect( mapReduxStateToProps )( Details );

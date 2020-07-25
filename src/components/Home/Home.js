@@ -11,14 +11,14 @@ class Home extends Component {
     this.props.dispatch({ type: 'FETCH_DETAILS' });
   }
 
-  goToDetail = ( event ) => {
-    // go to the detail page 
+  goToDetails = ( event ) => {
+    // go to the details page 
     // of the poster that was clicked on
 
     // this is only client front end display stuff
     // we want the ID so we can dig for the detials in redux
-    
-    this.props.history.push( `/detail/${ event.target.name }` )
+
+    this.props.history.push( `/details/${ event.target.name }` )
   }
   
   render() {
@@ -30,7 +30,7 @@ class Home extends Component {
           { this.props.reduxState.movies.map( ( movie ) => 
                       <li key={ movie.id }>
                         <img  src={ movie.poster } 
-                              onClick={ this.goToDetail } 
+                              onClick={ this.goToDetails } 
                               name={ movie.id } 
                               alt={ movie.title } 
                         />

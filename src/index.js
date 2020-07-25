@@ -32,10 +32,10 @@ function* getMovies(){
   function* getDetails( action ) {
     try {
         // get all of the genres for each movie
-        const response = yield axios.get( '/detail' );
+        const response = yield axios.get( '/details' );
         yield put({ type: 'SET_DETAILS', payload: response.data });
     } catch (error) {
-        console.log( 'error getting detail: ', error );
+        console.log( 'error getting details: ', error );
     }
   }
 
