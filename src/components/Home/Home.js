@@ -11,7 +11,7 @@ class Home extends Component {
     this.props.dispatch({ type: 'FETCH_DETAILS' });
   }
 
-  goToDetails = ( event ) => {
+  goToDetailsPage = ( event ) => {
     // go to the details page 
     // of the poster that was clicked on
 
@@ -30,7 +30,7 @@ class Home extends Component {
           { this.props.reduxState.movies.map( ( movie ) => 
                       <li key={ movie.id }>
                         <img  src={ movie.poster } 
-                              onClick={ this.goToDetails } 
+                              onClick={ this.goToDetailsPage } 
                               name={ movie.id } 
                               alt={ movie.title } 
                         />

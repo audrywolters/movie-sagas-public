@@ -69,6 +69,13 @@ class Details extends Component {
 
   }
 
+  goToEditPage = ( event ) => {
+    // go to the edit page
+    // and send the movie id along in the path
+    this.props.history.push( `/edit/${ event.target.name }` )
+  }
+
+
   render() {
     return (
       <>
@@ -84,6 +91,8 @@ class Details extends Component {
                       </li>
                   )}
         </ul>
+        <button name={ this.state.movie.id } 
+                onClick={ this.goToEditPage }>Edit this shit</button>
       </>
     );
   }

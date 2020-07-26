@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Details from '../Details/Details';
+import Edit from '../Edit/Edit';
 import './App.css';
 
 class App extends Component {
@@ -11,9 +12,9 @@ class App extends Component {
     return (
       <>
         <Router> 
-          <Route exact path="/" component={ Home } />
+          <Route exact path="/"      component={ Home } />
           <Route path='/details/:id' component={ Details } />
-          {/* <Route path="/edit"   component={ Edit } /> */}
+          <Route path="/edit/:id"    component={ Edit } />
         </Router>     
       </>
     );
