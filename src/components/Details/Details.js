@@ -91,8 +91,8 @@ class Details extends Component {
                       </li>
                   )}
         </ul>
-        <button name={ this.state.movie.id } 
-                onClick={ this.goToEditPage }>Edit this shit</button>
+        <button name={ this.state.movie.id }
+                onClick={ this.goToEditPage }>Edit</button>
       </>
     );
   }
