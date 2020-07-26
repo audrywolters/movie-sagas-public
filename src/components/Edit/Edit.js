@@ -73,10 +73,6 @@ class Edit extends Component {
 
   }  
 
-  saveTitleDescription = () => {
-
-  }
-
   onTitleChange = ( event ) => {
     this.setState({
       title: event.target.value
@@ -91,6 +87,42 @@ class Edit extends Component {
 
   goBackToDetail = () => {
     this.props.history.goBack();
+  }
+
+  saveDetails = () => {
+    let updateData = {
+                        title: this.state.title, 
+                        description: this.state.description,
+                        movieID: this.props.match.params.id
+                     }
+    //this.props.dispatch({ type: 'SAVE_DETAILS', updateData });
+    this.props.dispatch({ type: 'SAVE_DETAILS', payload: updateData });
+    
+    // axios.post('/details', {
+    //     title: this.state.title,
+    //     description: this.state.description
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    //console.log( 'App.js onClickLike ', pictureID );
+
+    // axios( {
+    //   method: 'POST',
+    //   url: `/details`
+    // })    
+    // .then( ( response ) => {
+    //   console.log( 'put response: ' + response.data );
+    //   this.getGalleryList();
+    // })      
+    // .catch( ( error ) => {
+    //   console.log( 'got error!: ', error );
+    // })
+  
   }
 
   render() {
@@ -109,7 +141,7 @@ class Edit extends Component {
                   )}
         </ul>
         <button name={ this.state.movie.id }
-                onClick={ this.saveTitleDescription }>Save</button>
+                onClick={ this.saveDetails }>Save</button>
         <button onClick={ this.goBackToDetail }>Cancel</button>
         
       </>
