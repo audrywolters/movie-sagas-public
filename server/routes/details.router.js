@@ -2,9 +2,9 @@ const express = require( 'express' );
 const router = express.Router();
 const pool = require( '../modules/pool' );
 
+
 // get all of the movies and their genres
-// in a super cool object: id:1, genres:{fantasy, sci-fi}
-// thanks to array_agg
+// in a super cool object: id:1, genres:{fantasy, sci-fi} (thanks to array_agg)
 router.get( '/', ( req, res ) => {
 
     pool.query( `SELECT m.id, array_agg(g.name)
@@ -25,10 +25,6 @@ router.get( '/', ( req, res ) => {
 // save the user's changes to movie title and description
 router.post('/', async (req, res) => {   
 
-
-
-
-    
     const client = await pool.connect();
 
     try {
@@ -37,9 +33,6 @@ router.post('/', async (req, res) => {
             description,
             movieID
         } = req.body;
-
-        console.log('post ', req.body);
-
 
         await client.query('BEGIN');
         
@@ -51,6 +44,7 @@ router.post('/', async (req, res) => {
 
         await client.query('COMMIT')
         res.sendStatus(201);
+
     } catch (error) {
         await client.query('ROLLBACK')
         console.log('Error POST /api/order', error);

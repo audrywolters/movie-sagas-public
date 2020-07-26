@@ -90,40 +90,20 @@ class Edit extends Component {
   }
 
   saveDetails = () => {
+
+    // prepare to update!
+
+    // make a nice object server can understand
     let updateData = {
                         title: this.state.title, 
                         description: this.state.description,
                         movieID: this.props.match.params.id
                      }
-    //this.props.dispatch({ type: 'SAVE_DETAILS', updateData });
+
+    // ask saga to help us do it
     this.props.dispatch({ type: 'SAVE_DETAILS', payload: updateData });
-    
-    // axios.post('/details', {
-    //     title: this.state.title,
-    //     description: this.state.description
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
-    //console.log( 'App.js onClickLike ', pictureID );
-
-    // axios( {
-    //   method: 'POST',
-    //   url: `/details`
-    // })    
-    // .then( ( response ) => {
-    //   console.log( 'put response: ' + response.data );
-    //   this.getGalleryList();
-    // })      
-    // .catch( ( error ) => {
-    //   console.log( 'got error!: ', error );
-    // })
-  
   }
+
 
   render() {
     return (
@@ -142,8 +122,7 @@ class Edit extends Component {
         </ul>
         <button name={ this.state.movie.id }
                 onClick={ this.saveDetails }>Save</button>
-        <button onClick={ this.goBackToDetail }>Cancel</button>
-        
+        <button onClick={ this.goBackToDetail }>Cancel</button>       
       </>
     );  
   }
