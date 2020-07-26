@@ -4,23 +4,26 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
   state = {
+    movieID: 0,
     movie: [],
     genres: []
   }
 
   componentDidMount() {  
-    // we don't have much data - the movie ID only
-    // so we have to find it...
+    // the router could only send us so much data - the movie ID
+    // so we have to find the stuff that belongs to it
     this.setMovie();  
     this.setGenres();
   }
 
   setMovie = () => {
+    // let's make this easy to read
+    
     // set our ID in a nice variable
     // this is the ID of the poster we just clicked on
     let thisMovieID = this.props.match.params.id;
 
-    // make a nice variable to store our movie 
+    // make a nice variable to store our movie data
     // when we find it
     let coolMovie = [];
 
@@ -34,12 +37,14 @@ class Details extends Component {
 
     // now we can keep it safe
     this.setState({
+        movieID: thisMovieID,
         movie: coolMovie
     })
   }
 
   setGenres = () => {
     // let's make this easier to read
+
     // grab the ID of the poster clicked on (of which we are about to load the details of)
     let thisMovieID = this.props.match.params.id;
 
@@ -47,12 +52,8 @@ class Details extends Component {
     // (data is a giant array of all the movies' stuff)
     let allReduxDetails = this.props.reduxState.details;
 
-    // prepare an object to catch our specific movie
+    // prepare an object to catch our specific movie's data
     let thisDetail = {};
-
-    // i'm not certain about this
-    // if there were 10,000 movies, this loop would take a long time
-    // the alternative is to hit the server on every click - that's a lot of traffic
 
     // loop to find the matching ID
     for ( const reduxDetail of allReduxDetails ) {   
@@ -69,6 +70,13 @@ class Details extends Component {
 
   }
 
+  goToEditPage = ( event ) => {
+    // go to the edit page
+    // and send the movie id along in the path
+    this.props.history.push( `/edit/${ this.state.movieID }` )
+  }
+
+
   render() {
     return (
       <>
@@ -84,6 +92,9 @@ class Details extends Component {
                       </li>
                   )}
         </ul>
+        <button onClick={ this.props.history.goBack }>Back to Home</button>
+        <button name={ this.state.movie.id }
+                onClick={ this.goToEditPage }>Edit</button>
       </>
     );
   }
