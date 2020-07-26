@@ -24,7 +24,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h2>you're in home</h2>                
+        <h2>Welcome to the Super Cool Movie Page</h2>                
         <ul>
           {/* show all the movies in the DB */}
           { this.props.reduxState.movies.map( ( movie ) => 

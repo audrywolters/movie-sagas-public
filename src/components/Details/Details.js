@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
   state = {
+    movieID: 0,
     movie: [],
     genres: []
   }
@@ -36,6 +37,7 @@ class Details extends Component {
 
     // now we can keep it safe
     this.setState({
+        movieID: thisMovieID,
         movie: coolMovie
     })
   }
@@ -71,7 +73,7 @@ class Details extends Component {
   goToEditPage = ( event ) => {
     // go to the edit page
     // and send the movie id along in the path
-    this.props.history.push( `/edit/${ event.target.name }` )
+    this.props.history.push( `/edit/${ this.state.movieID }` )
   }
 
 
@@ -90,6 +92,7 @@ class Details extends Component {
                       </li>
                   )}
         </ul>
+        <button onClick={ this.props.history.goBack }>Back to Home</button>
         <button name={ this.state.movie.id }
                 onClick={ this.goToEditPage }>Edit</button>
       </>

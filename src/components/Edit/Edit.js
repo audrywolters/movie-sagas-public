@@ -102,13 +102,23 @@ class Edit extends Component {
 
     // ask saga to help us do it
     this.props.dispatch({ type: 'SAVE_DETAILS', payload: updateData });
+
+    // also take up back to the details page
+    this.goBackToDetail();
   }
 
 
   render() {
     return (
-      <>  
+      <> 
+        <label>Change the Title</label>
+        <br />
         <input type='text' value={ this.state.title } onChange={ this.onTitleChange } />
+
+        <br />
+        <br />
+        
+        <label>Change the Description</label>
         <br />
         <textarea value={ this.state.description } onChange={ this.onDescriptionChange }></textarea>
 
