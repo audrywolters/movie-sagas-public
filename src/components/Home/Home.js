@@ -24,21 +24,19 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h2>Welcome to the Super Cool Movie Page</h2>                
-        <ul>
+        <h2 className="homeHeader">Welcome to the Super Cool Movie Page</h2>                
           {/* show all the movies in the DB */}
           { this.props.reduxState.movies.map( ( movie ) => 
-                      <li key={ movie.id }>
+                      <div key={ movie.id } className="movieBox">
                         <img  src={ movie.poster } 
                               onClick={ this.goToDetailsPage } 
                               name={ movie.id } 
-                              alt={ movie.title } 
+                              alt={ movie.title } className="poster" 
                         />
-                        <h3>{ movie.title }</h3>
-                        <span>{ movie.description }</span>
-                      </li>
+                        <div className="title">{ movie.title }</div>
+                        <div className="description">{ movie.description }</div>
+                      </div>
                   )} 
-        </ul>
       </>
     );  
   }

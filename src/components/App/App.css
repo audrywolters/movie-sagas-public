@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(226, 226, 226);
+    margin: 40px 0 0 40px;
+}
+
+button {
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    border: none;
+    background: white;
+    color: rgb(66, 62, 61);
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.genresTitle {
+    font-size: 18px;
+    font-weight: 450;
+}
+
+.genresBox {
+    margin-bottom: 60px;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../Edit/Edit.css';
 
 class Edit extends Component {
 
@@ -110,30 +111,34 @@ class Edit extends Component {
 
   render() {
     return (
-      <> 
-        <label>Change the Title</label>
-        <br />
-        <input type='text' value={ this.state.title } onChange={ this.onTitleChange } />
+      <div className="detailsBox">
+          <div className="detailsTitle">Edit Movie</div>
 
-        <br />
-        <br />
-        
-        <label>Change the Description</label>
-        <br />
-        <textarea value={ this.state.description } onChange={ this.onDescriptionChange }></textarea>
 
-        <h4>Genres include:</h4>
-        <ul>
-        { this.state.genres.map( ( genre, index ) => 
-                      <li key={ index }>
-                        { genre }
-                      </li>
-                  )}
-        </ul>
-        <button name={ this.state.movie.id }
-                onClick={ this.saveDetails }>Save</button>
-        <button onClick={ this.goBackToDetail }>Cancel</button>       
-      </>
+          <label>Title</label>
+          <br />
+          <input className="titleInput" type='text' value={ this.state.title } onChange={ this.onTitleChange } />
+
+          <br />
+          <br />
+          
+          <label>Description</label>
+          <br />
+          <textarea className="descriptionTextarea" value={ this.state.description } onChange={ this.onDescriptionChange }></textarea>
+
+          <div className="genresBox">
+            <div className="genresTitle">Genres include</div>
+              { this.state.genres.map( ( genre, index ) => 
+                            <div key={ index }>
+                              { genre }
+                            </div>
+                        )}
+          </div>
+
+          <button onClick={ this.goBackToDetail }>Cancel</button>  
+          <button name={ this.state.movie.id }
+                  onClick={ this.saveDetails }>Save</button>
+      </div>
     );  
   }
 }
