@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../Details/Details.css';
 
 class Details extends Component {
 
@@ -79,23 +80,24 @@ class Details extends Component {
 
   render() {
     return (
-      <>
+      <div className="detailsBox">
         {/* display movie info */}
-        <h3>{ this.state.movie.title } </h3>
-        <div>{ this.state.movie.description }</div>
+        <div className="detailsTitle">{ this.state.movie.title }</div>
+        <div className="detailsDescription">{ this.state.movie.description }</div>
 
-        <h4>Genres include:</h4>
-        <ul>
-        { this.state.genres.map( ( genre, index ) => 
-                      <li key={ index }>
-                        { genre }
-                      </li>
-                  )}
-        </ul>
+        <div className="genresBox">
+          <div className="genresTitle">Genres include</div>
+          { this.state.genres.map( ( genre, index ) => 
+                        <div key={ index }>
+                          { genre }
+                        </div>
+                    )}
+        </div>
+
         <button onClick={ this.props.history.goBack }>Back to Home</button>
         <button name={ this.state.movie.id }
                 onClick={ this.goToEditPage }>Edit</button>
-      </>
+      </div>
     );
   }
   
