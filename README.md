@@ -1,19 +1,28 @@
 # Project Name
+Movie Sagas
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+## Languages Used
+CSS
+React
+React-Router
+Axios
+Redux
+Redux Sagas
+Postgres SQL
 
 ## Description
+This web app displays serveral movies with their title and descriptions.
+The user can click on a poster and they will be brought to a page that diplays data about the film.
+There is an option of clicking an Edit button that allows the user to change the Title and/or the Description.
 
-Your project description goes here. What problem did you solve? How did you solve it?
+## I Learned
+How to combine almost everything I've learned at Prime! Very challenging assignment.
+This one had no clear path for building it. It was up to us to be creative and go our own way.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+The most challenging part was deciding how I was to retrieve data, imagining the app had 100,000 movies.
+One option would to hit the server on every Poster click and get that movies data.
+But that would be a lot of server traffic.
 
-
-    // i'm not certain about this
-    // if there were 10,000 movies, this loop would take a long time
-    // the alternative is to hit the server on every click - that's a lot of traffic
-
-    // i also question looping through redux each time i go to a new page
-    // router could only send the movieID - Nav wasn't an option so I couldn't use <Components movie={this.props.movie} />
-    // i could make a class or something for the loops but 
-    // what if there were 100,000 movies? it would take a long time
+I ended up hitting the server once at the beginning and pulling all the data there into Redux.
+The con there is looping over a lot of data.
+There was no perfect solution so I opted for the client to handle the heavy stuff.

@@ -1,0 +1,10 @@
+.titleInput {
+    width: 500px;
+    height: 30px;
+}
+
+.descriptionTextarea {
+    width: 500px;
+    height: 200px;
+    margin-bottom: 30px;
+}
